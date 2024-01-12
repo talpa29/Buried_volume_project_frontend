@@ -106,8 +106,8 @@
 <script>
 import axios from 'axios';
 import { BIconTextCenter } from 'bootstrap-vue';
-// site_name = process.env.VUE_APP_BACKEND_DOMAIN;
-const site_name = 'http://localhost:5000';
+const site_name = 'https://buried-volume-backend-b80295ba1ff8.herokuapp.com/';
+// const site_name = 'http://localhost:5000';
 export default {
   data() {
     return {
