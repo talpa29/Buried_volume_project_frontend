@@ -106,6 +106,8 @@
 <script>
 import axios from 'axios';
 import { BIconTextCenter } from 'bootstrap-vue';
+// site_name = process.env.VUE_APP_BACKEND_DOMAIN;
+const site_name = 'http://localhost:5000';
 export default {
   data() {
     return {
@@ -126,7 +128,7 @@ export default {
   },
   methods: {
     getmolecules() {
-      const path = 'http://localhost:5000/Molecules';
+      const path = `${site_name}/Molecules`;
       axios.get(path)
         .then((res) => {
           this.molecules = res.data.molecules;
@@ -163,7 +165,7 @@ export default {
   formData.append('file', file);
 
   // Send the molecule to the backend
-  axios.post('http://localhost:5000/Molecules', formData , {headers: {
+  axios.post(`${site_name}/Molecules`, formData , {headers: {
         'Content-Type': 'multipart/form-data'
       }})
     .then(response => {
@@ -185,7 +187,7 @@ export default {
 
     //action of deleting the molecule
     removeMol(molId) {
-      const path = `http://localhost:5000/${molId}`;
+      const path = `${site_name}/${molId}`;
       axios.delete(path)
           .then(() => {
           this.getmolecules();
@@ -204,7 +206,7 @@ export default {
     
     // Get the plot data from the server
     getPlot(molId) {
-      const path = `http://localhost:5000/${molId}`;
+      const path = `${site_name}/${molId}`;
       return axios.get(path, { responseType: 'arraybuffer' })
         .then((response) => {
           return new Blob([response.data], { type: 'image/png' });
